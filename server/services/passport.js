@@ -19,7 +19,9 @@ passport.use(
           done(null, existingUser);
         } else {
           // we don't have a user
-          new User({ googleId: profile.id }).save();
+          new User({ googleId: profile.id })
+            .save()
+            .then(user => done(null, user));
         }
       });
     }
